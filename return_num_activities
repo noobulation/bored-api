@@ -1,47 +1,55 @@
 import requests
 
-api_url = "https://www.boredapi.com/api/activity"
+api_url_1 = "https://www.boredapi.com/api/activity"
+api_url_2 = "https://www.boredapi.com/api/activity?participants="
 
 def get_bored_1():
+    response = requests.get(api_url_1)
+    some_stuff = response.json()
+    for key, value in some_stuff.items():
+        if key == 'activity':
+            print(value, '!!!')
+            
+def get_bored_2():
     num_1 =0
     while num_1 < 5:
         num_1 = num_1 + 1
-        response = requests.get(api_url)
+        response = requests.get(api_url_1)
         some_stuff = response.json()
         for key, value in some_stuff.items():
             if key == 'activity':
                 print(num_1, value)
 
-def get_bored_2():
-    response = requests.get(api_url)
+
+def get_bored_3():
+    num_people = input()
+    response = requests.get(api_url_2 + num_people)
     some_stuff = response.json()
     for key, value in some_stuff.items():
         if key == 'activity':
-            print(value, '!!!')
+            print(value, 'is an activity with', num_people, 'registered participants')
+        elif key == 'error':
+            print("No activity found with the specified parameters, boop")
 
-def get_bored_3():
-    response = requests.get(api_url)
-    some_stuff = response.json()
-    for key, value in some_stuff.items():
-        if key == 'participants':
-            print(value)
 
-print('Enter "1" for single activity')
-print('Enter "2" for many activities')
+print('Enter "1" for one random activity')
+print('Enter "2" for many random activities')
 print('Enter "3" to find activities based on number of participants\n')
 
 choice = int(input())
 
 if choice == 1:
    print('\n Here is one possible activity \n')
-   get_bored_2()
+   get_bored_1()
    print('\n')
 elif choice == 2:
     print('\n Here is a list of many possible activities \n')
-    get_bored_1()
+    get_bored_2()
     print('\n')
     print('Please Enjoy!\n')
 elif choice == 3:
-   print('\n Under construction \n')
+   print("How many participants do you want?")
+   get_bored_3()
 else:
     print('\n You entered an invalid number \n')
+
