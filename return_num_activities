@@ -3,14 +3,17 @@ import requests
 api_url = "https://www.boredapi.com/api/activity"
 
 def get_bored_1():
-    num =0
-    while num < 5:
-        num = num + 1
+    num_1 =0
+    while num_1 < 5:
+        num_1 = num_1 + 1
         response = requests.get(api_url)
         some_stuff = response.json()
         d1 = {}
         for key, value in some_stuff.items():
             if key == 'activity':
-                print(value)
+                print(num_1, value)
     
+print('\n Here is a list of possible activities \n')
 get_bored_1()
+print('\n')
+print('Please Enjoy!\n')
