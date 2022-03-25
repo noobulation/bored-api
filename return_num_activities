@@ -1,0 +1,16 @@
+import requests
+
+api_url = "https://www.boredapi.com/api/activity"
+
+def get_bored_1():
+    num =0
+    while num < 5:
+        num = num + 1
+        response = requests.get(api_url)
+        some_stuff = response.json()
+        d1 = {}
+        for key, value in some_stuff.items():
+            if key == 'activity':
+                print(value)
+    
+get_bored_1()
