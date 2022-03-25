@@ -2,6 +2,7 @@ import requests
 
 api_url_1 = "https://www.boredapi.com/api/activity"
 api_url_2 = "https://www.boredapi.com/api/activity?participants="
+api_url_3 = "https://www.boredapi.com/api/activity?price="
 
 def get_bored_1():
     response = requests.get(api_url_1)
@@ -20,7 +21,6 @@ def get_bored_2():
             if key == 'activity':
                 print(num_1, value)
 
-
 def get_bored_3():
     num_people = input()
     response = requests.get(api_url_2 + num_people)
@@ -31,10 +31,21 @@ def get_bored_3():
         elif key == 'error':
             print("No activity found with the specified parameters, boop")
 
+def get_bored_4():
+    num_price_float = float(input())
+    num_price_str = str(num_price_float)
+    response = requests.get(api_url_3 + num_price_str)
+    some_stuff = response.json()
+    for key, value in some_stuff.items():
+        if key == 'activity':
+            print('\n', value, 'is an activity within your budget of: $', num_price_float, '\n')
+        elif key == 'error':
+            print("No activity found with the specified parameters, boop")
 
 print('Enter "1" for one random activity')
 print('Enter "2" for many random activities')
-print('Enter "3" to find activities based on number of participants\n')
+print('Enter "3" to find activities based on number of participants')
+print('Enter "4" to find activities based on max cosr\n')
 
 choice = int(input())
 
@@ -50,6 +61,8 @@ elif choice == 2:
 elif choice == 3:
    print("How many participants do you want?")
    get_bored_3()
+elif choice == 4:
+   print("What is the maximum you would like to pay?")
+   get_bored_4()
 else:
-    print('\n You entered an invalid number \n')
-
+    print('\n You have entered an invalid number \n')
