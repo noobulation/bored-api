@@ -12,8 +12,19 @@ def get_bored_1():
         for key, value in some_stuff.items():
             if key == 'activity':
                 print(num_1, value)
-    
-print('\n Here is a list of possible activities \n')
+
+def get_bored_2():
+    response = requests.get(api_url)
+    some_stuff = response.json()
+    for key, value in some_stuff.items():
+        if key == 'activity':
+            print(value)
+
+print('\n Here is a list of many possible activities \n')
 get_bored_1()
 print('\n')
 print('Please Enjoy!\n')
+
+print('\n Here is a list of one possible activity \n')
+get_bored_2()
+print('\n')
