@@ -26,7 +26,10 @@ def get_bored_3():
         if key == 'participants':
             print(value)
 
-print('Enter "1" for single activity or "2" for many activities')
+print('Enter "1" for single activity')
+print('Enter "2" for many activities')
+print('Enter "3" to find activities based on number of participants\n')
+
 choice = int(input())
 
 if choice == 1:
@@ -38,5 +41,7 @@ elif choice == 2:
     get_bored_1()
     print('\n')
     print('Please Enjoy!\n')
+elif choice == 3:
+   print('\n Under construction \n')
 else:
     print('\n You entered an invalid number \n')
