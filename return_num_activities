@@ -17,13 +17,26 @@ def get_bored_2():
     some_stuff = response.json()
     for key, value in some_stuff.items():
         if key == 'activity':
-            print(value, '!')
+            print(value, '!!!')
 
-print('\n Here is a list of many possible activities \n')
-get_bored_1()
-print('\n')
-print('Please Enjoy!\n')
+def get_bored_3():
+    response = requests.get(api_url)
+    some_stuff = response.json()
+    for key, value in some_stuff.items():
+        if key == 'participants':
+            print(value)
 
-print('\n Here is a list of one possible activity \n')
-get_bored_2()
-print('\n')
+print('Enter "1" for single activity or "2" for many activities')
+choice = int(input())
+
+if choice == 1:
+   print('\n Here is one possible activity \n')
+   get_bored_2()
+   print('\n')
+elif choice == 2:
+    print('\n Here is a list of many possible activities \n')
+    get_bored_1()
+    print('\n')
+    print('Please Enjoy!\n')
+else:
+    print('\n You entered an invalid number \n')
